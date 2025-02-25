@@ -1,31 +1,300 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/stysscythe/script/main/LibTest.lua"))()
 
---[[This file was protected with t.me/CODE_QUEST_INFO]]
+local Players = game:GetService'Players'
+local LocalPlayer = Players.LocalPlayer
 
-local protected_string = "--[[This file was protected with t.me/CODE_QUEST_INFO]]"
+local Window = Library.Window("Owlhub Reloaded")
 
-if not string.find(protected_string, "--[[This file was protected with t.me/CODE_QUEST_INFO]]") then
-    error("Protection string not found. Code execution halted.")
+local Test1 = Window.CreateTab('Combat')
+local Test2 = Window.CreateTab('Visual')
+local Test3 = Window.CreateTab('Player')
+
+-- Flying Script
+local flySettings = {fly = false, flyspeed = 50}
+local c, h, bv, bav, cam, flying
+local p = game.Players.LocalPlayer
+local buttons = {W = false, S = false, A = false, D = false, Moving = false}
+local bool = false
+
+Test1.CreateButton("Aimbot", function()
+	enableAimbot()
+end)
+
+Test1.CreateButton("Infinite Ammo", function()
+	while wait() do
+
+		game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount.Value = 999
+
+		game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount2.Value = 999
+
+	end 
+end)
+
+Test1.CreateButton("Hitbox Extender", function()
+	function getplrsname()
+		for i,v in pairs(game:GetChildren()) do
+			if v.ClassName == "Players" then
+				return v.Name
+			end
+		end
+	end
+	local players = getplrsname()
+	local plr = game[players].LocalPlayer
+	coroutine.resume(coroutine.create(function()
+		while  wait(1) do
+			coroutine.resume(coroutine.create(function()
+				for _,v in pairs(game[players]:GetPlayers()) do
+					if v.Name ~= plr.Name and v.Character then
+						v.Character.RightUpperLeg.CanCollide = false
+						v.Character.RightUpperLeg.Transparency = 10
+						v.Character.RightUpperLeg.Size = Vector3.new(13,13,13)
+
+						v.Character.LeftUpperLeg.CanCollide = false
+						v.Character.LeftUpperLeg.Transparency = 10
+						v.Character.LeftUpperLeg.Size = Vector3.new(13,13,13)
+
+						v.Character.HeadHB.CanCollide = false
+						v.Character.HeadHB.Transparency = 10
+						v.Character.HeadHB.Size = Vector3.new(30,30,30)
+
+						v.Character.HumanoidRootPart.CanCollide = false
+						v.Character.HumanoidRootPart.Transparency = 10
+						v.Character.HumanoidRootPart.Size = Vector3.new(13,13,13)
+
+					end
+				end
+			end))
+		end
+	end))
+end)
+
+Test2.CreateButton("ESP", function()
+	pcall(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua'))() end)
+end)
+
+Test2.CreateButton("RGB GUN", function()
+	local c = 1 function zigzag(X)  return math.acos(math.cos(X * math.pi)) / math.pi end game:GetService("RunService").RenderStepped:Connect(function()  if game.Workspace.Camera:FindFirstChild('Arms') then   for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do    if v.ClassName == 'MeshPart' then      v.Color = Color3.fromHSV(zigzag(c),1,1)     c = c + .0001    end   end  end end)
+end)
+
+Test3.CreateButton("Fly", function()
+	bool = not bool
+	if bool then
+		startFly()
+	else
+		endFly()
+	end
+end)
+
+
+Test1.CreateKeybind("Toggle UI", Enum.KeyCode.RightShift, function()
+	Library:ToggleUI()
+end)
+
+function enableAimbot()
+	-- Credit Dollynho --
+
+	local fov = 50
+	local maxDistance = 9999
+	local teamCheck = true
+	local wallCheck = true -- default is true
+	local aimPart = "Head"
+
+	local RunService = game:GetService("RunService")
+	local UserInputService = game:GetService("UserInputService")
+	local Players = game:GetService("Players")
+	local Cam = game.Workspace.CurrentCamera
+
+	local FOVring = Drawing.new("Circle")
+	FOVring.Visible = true
+	FOVring.Thickness = 2
+	FOVring.Color = Color3.fromRGB(128, 0, 128)
+	FOVring.Filled = false
+	FOVring.Radius = fov
+	FOVring.Position = Cam.ViewportSize / 2
+
+	local function updateDrawings()
+		FOVring.Position = Cam.ViewportSize / 2
+	end
+
+	local function onKeyDown(input)
+		if input.KeyCode == Enum.KeyCode.F5 then
+			teamCheck = not teamCheck
+			print("Team check: " .. tostring(teamCheck))
+		elseif input.KeyCode == Enum.KeyCode.F6 then
+			wallCheck = not wallCheck
+			print("Wall check: " .. tostring(wallCheck))
+		elseif input.KeyCode == Enum.KeyCode.F7 then
+			if aimPart == "Head" then
+				aimPart = "UpperTorso"
+			elseif aimPart == "UpperTorso" then
+				aimPart = "Head"
+			end
+			print("Aim Part: " .. aimPart)
+		elseif input.KeyCode == Enum.KeyCode.F8 then
+			FOVring.Visible = not FOVring.Visible
+		elseif input.KeyCode == Enum.KeyCode.End then
+			if fov == 50 then
+				fov = 100
+			elseif fov == 100 then
+				fov = 150
+			elseif fov == 150 then
+				fov = 200
+			elseif fov == 200 then
+				fov = 50
+			end
+			FOVring.Radius = fov
+			print("FOV: " .. fov)
+		end
+	end
+
+	UserInputService.InputBegan:Connect(onKeyDown)
+
+	local function lookAt(target)
+		local lookVector = (target - Cam.CFrame.Position).unit
+		local newCFrame = CFrame.new(Cam.CFrame.Position, Cam.CFrame.Position + lookVector)
+		Cam.CFrame = newCFrame
+	end
+
+	local function isPlayerAlive(player)
+		local character = player.Character
+		return character and character:FindFirstChild("Humanoid") and character.Humanoid.Health > 0
+	end
+
+	local function isPlayerVisibleThroughWalls(player, trg_part)
+		if not wallCheck then
+			return true
+		end
+
+		local localPlayerCharacter = Players.LocalPlayer.Character
+		if not localPlayerCharacter then
+			return false
+		end
+
+		local part = player.Character and player.Character:FindFirstChild(trg_part)
+		if not part then
+			return false
+		end
+
+		local ray = Ray.new(Cam.CFrame.Position, part.Position - Cam.CFrame.Position)
+		local hit, position = workspace:FindPartOnRayWithIgnoreList(ray, {localPlayerCharacter})
+
+		return hit and hit:IsDescendantOf(player.Character)
+	end
+
+	local function getClosestPlayerInFOV(trg_part)
+		local nearest = nil
+		local last = math.huge
+		local playerMousePos = Cam.ViewportSize / 2
+		local localPlayer = Players.LocalPlayer
+
+		for _, player in ipairs(Players:GetPlayers()) do
+			if player ~= localPlayer and (not teamCheck or player.Team ~= localPlayer.Team) and isPlayerAlive(player) then
+				local part = player.Character and player.Character:FindFirstChild(trg_part)
+				if part then
+					local ePos, isVisible = Cam:WorldToViewportPoint(part.Position)
+					local distance = (Vector2.new(ePos.x, ePos.y) - playerMousePos).Magnitude
+
+					if distance < last and isVisible and distance < fov and distance < maxDistance and isPlayerVisibleThroughWalls(player, trg_part) then
+						last = distance
+						nearest = player
+					end
+				end
+			end
+		end
+
+		return nearest
+	end
+
+	RunService.RenderStepped:Connect(function()
+		updateDrawings()
+		local closest = getClosestPlayerInFOV(aimPart)
+		if closest and closest.Character:FindFirstChild(aimPart) then
+			lookAt(closest.Character[aimPart].Position)
+		end
+
+		if closest then
+			local part = closest.Character[aimPart]
+			local ePos, isVisible = Cam:WorldToViewportPoint(part.Position)
+			local distance = (Vector2.new(ePos.x, ePos.y) - (Cam.ViewportSize / 2)).Magnitude
+		else
+		end
+
+		wait(0)
+	end)
 end
 
-local base64_decode = function(data)
-    local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-    data = string.gsub(data, '[^'..b..'=]', '')
-    return (data:gsub('.', function(x)
-        if (x == '=') then return '' end
-        local r,f='',(b:find(x)-1)
-        for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end
-        return r;
-    end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x)
-        if (#x ~= 8) then return '' end
-        local c=0
-        for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end
-        return string.char(c)
-    end))
+flySettings.flyspeed = 50
+
+function startFly()
+	if not p.Character or not p.Character.Head or flying then return end
+	c = p.Character
+	h = c.Humanoid
+	h.PlatformStand = true
+	cam = workspace:WaitForChild('Camera')
+	bv = Instance.new("BodyVelocity")
+	bav = Instance.new("BodyAngularVelocity")
+	bv.Velocity, bv.MaxForce, bv.P = Vector3.new(0, 0, 0), Vector3.new(10000, 10000, 10000), 1000
+	bav.AngularVelocity, bav.MaxTorque, bav.P = Vector3.new(0, 0, 0), Vector3.new(10000, 10000, 10000), 1000
+	bv.Parent = c.Head
+	bav.Parent = c.Head
+	flying = true
+	h.Died:Connect(function()
+		flying = false
+	end)
 end
 
-local code = [[bG9jYWwgTGlicmFyeSA9IGxvYWRzdHJpbmcoZ2FtZTpIdHRwR2V0KCJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vc3R5c3NjeXRoZS9zY3JpcHQvbWFpbi9MaWJUZXN0Lmx1YSIpKSgpCgpsb2NhbCBQbGF5ZXJzID0gZ2FtZTpHZXRTZXJ2aWNlJ1BsYXllcnMnCmxvY2FsIExvY2FsUGxheWVyID0gUGxheWVycy5Mb2NhbFBsYXllcgoKbG9jYWwgV2luZG93ID0gTGlicmFyeS5XaW5kb3coIk93bGh1YiBSZWxvYWRlZCIpCgpsb2NhbCBUZXN0MSA9IFdpbmRvdy5DcmVhdGVUYWIoJ0NvbWJhdCcpCmxvY2FsIFRlc3QyID0gV2luZG93LkNyZWF0ZVRhYignVmlzdWFsJykKbG9jYWwgVGVzdDMgPSBXaW5kb3cuQ3JlYXRlVGFiKCdQbGF5ZXInKQoKLS0gRmx5aW5nIFNjcmlwdApsb2NhbCBmbHlTZXR0aW5ncyA9IHtmbHkgPSBmYWxzZSwgZmx5c3BlZWQgPSA1MH0KbG9jYWwgYywgaCwgYnYsIGJhdiwgY2FtLCBmbHlpbmcKbG9jYWwgcCA9IGdhbWUuUGxheWVycy5Mb2NhbFBsYXllcgpsb2NhbCBidXR0b25zID0ge1cgPSBmYWxzZSwgUyA9IGZhbHNlLCBBID0gZmFsc2UsIEQgPSBmYWxzZSwgTW92aW5nID0gZmFsc2V9CmxvY2FsIGJvb2wgPSBmYWxzZQoKVGVzdDEuQ3JlYXRlQnV0dG9uKCJBaW1ib3QiLCBmdW5jdGlvbigpCgllbmFibGVBaW1ib3QoKQplbmQpCgpUZXN0MS5DcmVhdGVCdXR0b24oIkluZmluaXRlIEFtbW8iLCBmdW5jdGlvbigpCgl3aGlsZSB3YWl0KCkgZG8KCgkJZ2FtZTpHZXRTZXJ2aWNlKCJQbGF5ZXJzIikuTG9jYWxQbGF5ZXIuUGxheWVyR3VpLkdVSS5DbGllbnQuVmFyaWFibGVzLmFtbW9jb3VudC5WYWx1ZSA9IDk5OQoKCQlnYW1lOkdldFNlcnZpY2UoIlBsYXllcnMiKS5Mb2NhbFBsYXllci5QbGF5ZXJHdWkuR1VJLkNsaWVudC5WYXJpYWJsZXMuYW1tb2NvdW50Mi5WYWx1ZSA9IDk5OQoKCWVuZCAKZW5kKQoKVGVzdDEuQ3JlYXRlQnV0dG9uKCJIaXRib3ggRXh0ZW5kZXIiLCBmdW5jdGlvbigpCglmdW5jdGlvbiBnZXRwbHJzbmFtZSgpCgkJZm9yIGksdiBpbiBwYWlycyhnYW1lOkdldENoaWxkcmVuKCkpIGRvCgkJCWlmIHYuQ2xhc3NOYW1lID09ICJQbGF5ZXJzIiB0aGVuCgkJCQlyZXR1cm4gdi5OYW1lCgkJCWVuZAoJCWVuZAoJZW5kCglsb2NhbCBwbGF5ZXJzID0gZ2V0cGxyc25hbWUoKQoJbG9jYWwgcGxyID0gZ2FtZVtwbGF5ZXJzXS5Mb2NhbFBsYXllcgoJY29yb3V0aW5lLnJlc3VtZShjb3JvdXRpbmUuY3JlYXRlKGZ1bmN0aW9uKCkKCQl3aGlsZSAgd2FpdCgxKSBkbwoJCQljb3JvdXRpbmUucmVzdW1lKGNvcm91dGluZS5jcmVhdGUoZnVuY3Rpb24oKQoJCQkJZm9yIF8sdiBpbiBwYWlycyhnYW1lW3BsYXllcnNdOkdldFBsYXllcnMoKSkgZG8KCQkJCQlpZiB2Lk5hbWUgfj0gcGxyLk5hbWUgYW5kIHYuQ2hhcmFjdGVyIHRoZW4KCQkJCQkJdi5DaGFyYWN0ZXIuUmlnaHRVcHBlckxlZy5DYW5Db2xsaWRlID0gZmFsc2UKCQkJCQkJdi5DaGFyYWN0ZXIuUmlnaHRVcHBlckxlZy5UcmFuc3BhcmVuY3kgPSAxMAoJCQkJCQl2LkNoYXJhY3Rlci5SaWdodFVwcGVyTGVnLlNpemUgPSBWZWN0b3IzLm5ldygxMywxMywxMykKCgkJCQkJCXYuQ2hhcmFjdGVyLkxlZnRVcHBlckxlZy5DYW5Db2xsaWRlID0gZmFsc2UKCQkJCQkJdi5DaGFyYWN0ZXIuTGVmdFVwcGVyTGVnLlRyYW5zcGFyZW5jeSA9IDEwCgkJCQkJCXYuQ2hhcmFjdGVyLkxlZnRVcHBlckxlZy5TaXplID0gVmVjdG9yMy5uZXcoMTMsMTMsMTMpCgoJCQkJCQl2LkNoYXJhY3Rlci5IZWFkSEIuQ2FuQ29sbGlkZSA9IGZhbHNlCgkJCQkJCXYuQ2hhcmFjdGVyLkhlYWRIQi5UcmFuc3BhcmVuY3kgPSAxMAoJCQkJCQl2LkNoYXJhY3Rlci5IZWFkSEIuU2l6ZSA9IFZlY3RvcjMubmV3KDMwLDMwLDMwKQoKCQkJCQkJdi5DaGFyYWN0ZXIuSHVtYW5vaWRSb290UGFydC5DYW5Db2xsaWRlID0gZmFsc2UKCQkJCQkJdi5DaGFyYWN0ZXIuSHVtYW5vaWRSb290UGFydC5UcmFuc3BhcmVuY3kgPSAxMAoJCQkJCQl2LkNoYXJhY3Rlci5IdW1hbm9pZFJvb3RQYXJ0LlNpemUgPSBWZWN0b3IzLm5ldygxMywxMywxMykKCgkJCQkJZW5kCgkJCQllbmQKCQkJZW5kKSkKCQllbmQKCWVuZCkpCmVuZCkKClRlc3QyLkNyZWF0ZUJ1dHRvbigiRVNQIiwgZnVuY3Rpb24oKQoJcGNhbGwoZnVuY3Rpb24oKSBsb2Fkc3RyaW5nKGdhbWU6SHR0cEdldCgnaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2ljM3cwbGYyMi9Vbm5hbWVkLUVTUC9tYXN0ZXIvVW5uYW1lZEVTUC5sdWEnKSkoKSBlbmQpCmVuZCkKClRlc3QyLkNyZWF0ZUJ1dHRvbigiUkdCIEdVTiIsIGZ1bmN0aW9uKCkKCWxvY2FsIGMgPSAxIGZ1bmN0aW9uIHppZ3phZyhYKSAgcmV0dXJuIG1hdGguYWNvcyhtYXRoLmNvcyhYICogbWF0aC5waSkpIC8gbWF0aC5waSBlbmQgZ2FtZTpHZXRTZXJ2aWNlKCJSdW5TZXJ2aWNlIikuUmVuZGVyU3RlcHBlZDpDb25uZWN0KGZ1bmN0aW9uKCkgIGlmIGdhbWUuV29ya3NwYWNlLkNhbWVyYTpGaW5kRmlyc3RDaGlsZCgnQXJtcycpIHRoZW4gICBmb3IgaSx2IGluIHBhaXJzKGdhbWUuV29ya3NwYWNlLkNhbWVyYS5Bcm1zOkdldERlc2NlbmRhbnRzKCkpIGRvICAgIGlmIHYuQ2xhc3NOYW1lID09ICdNZXNoUGFydCcgdGhlbiAgICAgIHYuQ29sb3IgPSBDb2xvcjMuZnJvbUhTVih6aWd6YWcoYyksMSwxKSAgICAgYyA9IGMgKyAuMDAwMSAgICBlbmQgICBlbmQgIGVuZCBlbmQpCmVuZCkKClRlc3QzLkNyZWF0ZUJ1dHRvbigiRmx5IiwgZnVuY3Rpb24oKQoJYm9vbCA9IG5vdCBib29sCglpZiBib29sIHRoZW4KCQlzY3JpcHQuUGFyZW50LkJhY2tncm91bmRDb2xvcjMgPSBDb2xvcjMubmV3KDAsIDEsIDAuNDk4MDM5KQoJCXN0YXJ0Rmx5KCkKCWVsc2UKCQlzY3JpcHQuUGFyZW50LkJhY2tncm91bmRDb2xvcjMgPSBDb2xvcjMubmV3KDI1NSwgMCwgMCkKCQllbmRGbHkoKQoJZW5kCmVuZCkKCgpUZXN0MS5DcmVhdGVLZXliaW5kKCJUb2dnbGUgVUkiLCBFbnVtLktleUNvZGUuUmlnaHRTaGlmdCwgZnVuY3Rpb24oKQoJTGlicmFyeTpUb2dnbGVVSSgpCmVuZCkKCmZ1bmN0aW9uIGVuYWJsZUFpbWJvdCgpCgktLSBDcmVkaXQgRG9sbHluaG8gLS0KCglsb2NhbCBmb3YgPSA1MAoJbG9jYWwgbWF4RGlzdGFuY2UgPSA5OTk5Cglsb2NhbCB0ZWFtQ2hlY2sgPSB0cnVlCglsb2NhbCB3YWxsQ2hlY2sgPSB0cnVlIC0tIGRlZmF1bHQgaXMgdHJ1ZQoJbG9jYWwgYWltUGFydCA9ICJIZWFkIgoKCWxvY2FsIFJ1blNlcnZpY2UgPSBnYW1lOkdldFNlcnZpY2UoIlJ1blNlcnZpY2UiKQoJbG9jYWwgVXNlcklucHV0U2VydmljZSA9IGdhbWU6R2V0U2VydmljZSgiVXNlcklucHV0U2VydmljZSIpCglsb2NhbCBQbGF5ZXJzID0gZ2FtZTpHZXRTZXJ2aWNlKCJQbGF5ZXJzIikKCWxvY2FsIENhbSA9IGdhbWUuV29ya3NwYWNlLkN1cnJlbnRDYW1lcmEKCglsb2NhbCBGT1ZyaW5nID0gRHJhd2luZy5uZXcoIkNpcmNsZSIpCglGT1ZyaW5nLlZpc2libGUgPSB0cnVlCglGT1ZyaW5nLlRoaWNrbmVzcyA9IDIKCUZPVnJpbmcuQ29sb3IgPSBDb2xvcjMuZnJvbVJHQigxMjgsIDAsIDEyOCkKCUZPVnJpbmcuRmlsbGVkID0gZmFsc2UKCUZPVnJpbmcuUmFkaXVzID0gZm92CglGT1ZyaW5nLlBvc2l0aW9uID0gQ2FtLlZpZXdwb3J0U2l6ZSAvIDIKCglsb2NhbCBmdW5jdGlvbiB1cGRhdGVEcmF3aW5ncygpCgkJRk9WcmluZy5Qb3NpdGlvbiA9IENhbS5WaWV3cG9ydFNpemUgLyAyCgllbmQKCglsb2NhbCBmdW5jdGlvbiBvbktleURvd24oaW5wdXQpCgkJaWYgaW5wdXQuS2V5Q29kZSA9PSBFbnVtLktleUNvZGUuRjUgdGhlbgoJCQl0ZWFtQ2hlY2sgPSBub3QgdGVhbUNoZWNrCgkJCXByaW50KCJUZWFtIGNoZWNrOiAiIC4uIHRvc3RyaW5nKHRlYW1DaGVjaykpCgkJZWxzZWlmIGlucHV0LktleUNvZGUgPT0gRW51bS5LZXlDb2RlLkY2IHRoZW4KCQkJd2FsbENoZWNrID0gbm90IHdhbGxDaGVjawoJCQlwcmludCgiV2FsbCBjaGVjazogIiAuLiB0b3N0cmluZyh3YWxsQ2hlY2spKQoJCWVsc2VpZiBpbnB1dC5LZXlDb2RlID09IEVudW0uS2V5Q29kZS5GNyB0aGVuCgkJCWlmIGFpbVBhcnQgPT0gIkhlYWQiIHRoZW4KCQkJCWFpbVBhcnQgPSAiVXBwZXJUb3JzbyIKCQkJZWxzZWlmIGFpbVBhcnQgPT0gIlVwcGVyVG9yc28iIHRoZW4KCQkJCWFpbVBhcnQgPSAiSGVhZCIKCQkJZW5kCgkJCXByaW50KCJBaW0gUGFydDogIiAuLiBhaW1QYXJ0KQoJCWVsc2VpZiBpbnB1dC5LZXlDb2RlID09IEVudW0uS2V5Q29kZS5GOCB0aGVuCgkJCUZPVnJpbmcuVmlzaWJsZSA9IG5vdCBGT1ZyaW5nLlZpc2libGUKCQllbHNlaWYgaW5wdXQuS2V5Q29kZSA9PSBFbnVtLktleUNvZGUuRW5kIHRoZW4KCQkJaWYgZm92ID09IDUwIHRoZW4KCQkJCWZvdiA9IDEwMAoJCQllbHNlaWYgZm92ID09IDEwMCB0aGVuCgkJCQlmb3YgPSAxNTAKCQkJZWxzZWlmIGZvdiA9PSAxNTAgdGhlbgoJCQkJZm92ID0gMjAwCgkJCWVsc2VpZiBmb3YgPT0gMjAwIHRoZW4KCQkJCWZvdiA9IDUwCgkJCWVuZAoJCQlGT1ZyaW5nLlJhZGl1cyA9IGZvdgoJCQlwcmludCgiRk9WOiAiIC4uIGZvdikKCQllbmQKCWVuZAoKCVVzZXJJbnB1dFNlcnZpY2UuSW5wdXRCZWdhbjpDb25uZWN0KG9uS2V5RG93bikKCglsb2NhbCBmdW5jdGlvbiBsb29rQXQodGFyZ2V0KQoJCWxvY2FsIGxvb2tWZWN0b3IgPSAodGFyZ2V0IC0gQ2FtLkNGcmFtZS5Qb3NpdGlvbikudW5pdAoJCWxvY2FsIG5ld0NGcmFtZSA9IENGcmFtZS5uZXcoQ2FtLkNGcmFtZS5Qb3NpdGlvbiwgQ2FtLkNGcmFtZS5Qb3NpdGlvbiArIGxvb2tWZWN0b3IpCgkJQ2FtLkNGcmFtZSA9IG5ld0NGcmFtZQoJZW5kCgoJbG9jYWwgZnVuY3Rpb24gaXNQbGF5ZXJBbGl2ZShwbGF5ZXIpCgkJbG9jYWwgY2hhcmFjdGVyID0gcGxheWVyLkNoYXJhY3RlcgoJCXJldHVybiBjaGFyYWN0ZXIgYW5kIGNoYXJhY3RlcjpGaW5kRmlyc3RDaGlsZCgiSHVtYW5vaWQiKSBhbmQgY2hhcmFjdGVyLkh1bWFub2lkLkhlYWx0aCA+IDAKCWVuZAoKCWxvY2FsIGZ1bmN0aW9uIGlzUGxheWVyVmlzaWJsZVRocm91Z2hXYWxscyhwbGF5ZXIsIHRyZ19wYXJ0KQoJCWlmIG5vdCB3YWxsQ2hlY2sgdGhlbgoJCQlyZXR1cm4gdHJ1ZQoJCWVuZAoKCQlsb2NhbCBsb2NhbFBsYXllckNoYXJhY3RlciA9IFBsYXllcnMuTG9jYWxQbGF5ZXIuQ2hhcmFjdGVyCgkJaWYgbm90IGxvY2FsUGxheWVyQ2hhcmFjdGVyIHRoZW4KCQkJcmV0dXJuIGZhbHNlCgkJZW5kCgoJCWxvY2FsIHBhcnQgPSBwbGF5ZXIuQ2hhcmFjdGVyIGFuZCBwbGF5ZXIuQ2hhcmFjdGVyOkZpbmRGaXJzdENoaWxkKHRyZ19wYXJ0KQoJCWlmIG5vdCBwYXJ0IHRoZW4KCQkJcmV0dXJuIGZhbHNlCgkJZW5kCgoJCWxvY2FsIHJheSA9IFJheS5uZXcoQ2FtLkNGcmFtZS5Qb3NpdGlvbiwgcGFydC5Qb3NpdGlvbiAtIENhbS5DRnJhbWUuUG9zaXRpb24pCgkJbG9jYWwgaGl0LCBwb3NpdGlvbiA9IHdvcmtzcGFjZTpGaW5kUGFydE9uUmF5V2l0aElnbm9yZUxpc3QocmF5LCB7bG9jYWxQbGF5ZXJDaGFyYWN0ZXJ9KQoKCQlyZXR1cm4gaGl0IGFuZCBoaXQ6SXNEZXNjZW5kYW50T2YocGxheWVyLkNoYXJhY3RlcikKCWVuZAoKCWxvY2FsIGZ1bmN0aW9uIGdldENsb3Nlc3RQbGF5ZXJJbkZPVih0cmdfcGFydCkKCQlsb2NhbCBuZWFyZXN0ID0gbmlsCgkJbG9jYWwgbGFzdCA9IG1hdGguaHVnZQoJCWxvY2FsIHBsYXllck1vdXNlUG9zID0gQ2FtLlZpZXdwb3J0U2l6ZSAvIDIKCQlsb2NhbCBsb2NhbFBsYXllciA9IFBsYXllcnMuTG9jYWxQbGF5ZXIKCgkJZm9yIF8sIHBsYXllciBpbiBpcGFpcnMoUGxheWVyczpHZXRQbGF5ZXJzKCkpIGRvCgkJCWlmIHBsYXllciB+PSBsb2NhbFBsYXllciBhbmQgKG5vdCB0ZWFtQ2hlY2sgb3IgcGxheWVyLlRlYW0gfj0gbG9jYWxQbGF5ZXIuVGVhbSkgYW5kIGlzUGxheWVyQWxpdmUocGxheWVyKSB0aGVuCgkJCQlsb2NhbCBwYXJ0ID0gcGxheWVyLkNoYXJhY3RlciBhbmQgcGxheWVyLkNoYXJhY3RlcjpGaW5kRmlyc3RDaGlsZCh0cmdfcGFydCkKCQkJCWlmIHBhcnQgdGhlbgoJCQkJCWxvY2FsIGVQb3MsIGlzVmlzaWJsZSA9IENhbTpXb3JsZFRvVmlld3BvcnRQb2ludChwYXJ0LlBvc2l0aW9uKQoJCQkJCWxvY2FsIGRpc3RhbmNlID0gKFZlY3RvcjIubmV3KGVQb3MueCwgZVBvcy55KSAtIHBsYXllck1vdXNlUG9zKS5NYWduaXR1ZGUKCgkJCQkJaWYgZGlzdGFuY2UgPCBsYXN0IGFuZCBpc1Zpc2libGUgYW5kIGRpc3RhbmNlIDwgZm92IGFuZCBkaXN0YW5jZSA8IG1heERpc3RhbmNlIGFuZCBpc1BsYXllclZpc2libGVUaHJvdWdoV2FsbHMocGxheWVyLCB0cmdfcGFydCkgdGhlbgoJCQkJCQlsYXN0ID0gZGlzdGFuY2UKCQkJCQkJbmVhcmVzdCA9IHBsYXllcgoJCQkJCWVuZAoJCQkJZW5kCgkJCWVuZAoJCWVuZAoKCQlyZXR1cm4gbmVhcmVzdAoJZW5kCgoJUnVuU2VydmljZS5SZW5kZXJTdGVwcGVkOkNvbm5lY3QoZnVuY3Rpb24oKQoJCXVwZGF0ZURyYXdpbmdzKCkKCQlsb2NhbCBjbG9zZXN0ID0gZ2V0Q2xvc2VzdFBsYXllckluRk9WKGFpbVBhcnQpCgkJaWYgY2xvc2VzdCBhbmQgY2xvc2VzdC5DaGFyYWN0ZXI6RmluZEZpcnN0Q2hpbGQoYWltUGFydCkgdGhlbgoJCQlsb29rQXQoY2xvc2VzdC5DaGFyYWN0ZXJbYWltUGFydF0uUG9zaXRpb24pCgkJZW5kCgoJCWlmIGNsb3Nlc3QgdGhlbgoJCQlsb2NhbCBwYXJ0ID0gY2xvc2VzdC5DaGFyYWN0ZXJbYWltUGFydF0KCQkJbG9jYWwgZVBvcywgaXNWaXNpYmxlID0gQ2FtOldvcmxkVG9WaWV3cG9ydFBvaW50KHBhcnQuUG9zaXRpb24pCgkJCWxvY2FsIGRpc3RhbmNlID0gKFZlY3RvcjIubmV3KGVQb3MueCwgZVBvcy55KSAtIChDYW0uVmlld3BvcnRTaXplIC8gMikpLk1hZ25pdHVkZQoJCWVsc2UKCQllbmQKCgkJd2FpdCgwKQoJZW5kKQplbmQKCmZseVNldHRpbmdzLmZseXNwZWVkID0gNTAKCmZ1bmN0aW9uIHN0YXJ0Rmx5KCkKCWlmIG5vdCBwLkNoYXJhY3RlciBvciBub3QgcC5DaGFyYWN0ZXIuSGVhZCBvciBmbHlpbmcgdGhlbiByZXR1cm4gZW5kCgljID0gcC5DaGFyYWN0ZXIKCWggPSBjLkh1bWFub2lkCgloLlBsYXRmb3JtU3RhbmQgPSB0cnVlCgljYW0gPSB3b3Jrc3BhY2U6V2FpdEZvckNoaWxkKCdDYW1lcmEnKQoJYnYgPSBJbnN0YW5jZS5uZXcoIkJvZHlWZWxvY2l0eSIpCgliYXYgPSBJbnN0YW5jZS5uZXcoIkJvZHlBbmd1bGFyVmVsb2NpdHkiKQoJYnYuVmVsb2NpdHksIGJ2Lk1heEZvcmNlLCBidi5QID0gVmVjdG9yMy5uZXcoMCwgMCwgMCksIFZlY3RvcjMubmV3KDEwMDAwLCAxMDAwMCwgMTAwMDApLCAxMDAwCgliYXYuQW5ndWxhclZlbG9jaXR5LCBiYXYuTWF4VG9ycXVlLCBiYXYuUCA9IFZlY3RvcjMubmV3KDAsIDAsIDApLCBWZWN0b3IzLm5ldygxMDAwMCwgMTAwMDAsIDEwMDAwKSwgMTAwMAoJYnYuUGFyZW50ID0gYy5IZWFkCgliYXYuUGFyZW50ID0gYy5IZWFkCglmbHlpbmcgPSB0cnVlCgloLkRpZWQ6Q29ubmVjdChmdW5jdGlvbigpCgkJZmx5aW5nID0gZmFsc2UKCWVuZCkKZW5kCgpmdW5jdGlvbiBlbmRGbHkoKQoJaWYgbm90IHAuQ2hhcmFjdGVyIG9yIG5vdCBmbHlpbmcgdGhlbiByZXR1cm4gZW5kCgloLlBsYXRmb3JtU3RhbmQgPSBmYWxzZQoJYnY6RGVzdHJveSgpCgliYXY6RGVzdHJveSgpCglmbHlpbmcgPSBmYWxzZQplbmQKCmdhbWU6R2V0U2VydmljZSgiVXNlcklucHV0U2VydmljZSIpLklucHV0QmVnYW46Q29ubmVjdChmdW5jdGlvbihpbnB1dCwgR1BFKQoJaWYgR1BFIHRoZW4gcmV0dXJuIGVuZAoJZm9yIGksIGUgaW4gcGFpcnMoYnV0dG9ucykgZG8KCQlpZiBpIH49ICJNb3ZpbmciIGFuZCBpbnB1dC5LZXlDb2RlID09IEVudW0uS2V5Q29kZVtpXSB0aGVuCgkJCWJ1dHRvbnNbaV0gPSB0cnVlCgkJCWJ1dHRvbnMuTW92aW5nID0gdHJ1ZQoJCWVuZAoJZW5kCmVuZCkKCmdhbWU6R2V0U2VydmljZSgiVXNlcklucHV0U2VydmljZSIpLklucHV0RW5kZWQ6Q29ubmVjdChmdW5jdGlvbihpbnB1dCwgR1BFKQoJaWYgR1BFIHRoZW4gcmV0dXJuIGVuZAoJbG9jYWwgYSA9IGZhbHNlCglmb3IgaSwgZSBpbiBwYWlycyhidXR0b25zKSBkbwoJCWlmIGkgfj0gIk1vdmluZyIgdGhlbgoJCQlpZiBpbnB1dC5LZXlDb2RlID09IEVudW0uS2V5Q29kZVtpXSB0aGVuCgkJCQlidXR0b25zW2ldID0gZmFsc2UKCQkJZW5kCgkJCWlmIGJ1dHRvbnNbaV0gdGhlbgoJCQkJYSA9IHRydWUKCQkJZW5kCgkJZW5kCgllbmQKCWJ1dHRvbnMuTW92aW5nID0gYQplbmQpCgpsb2NhbCBmdW5jdGlvbiBzZXRWZWModmVjKQoJcmV0dXJuIHZlYyAqIChmbHlTZXR0aW5ncy5mbHlzcGVlZCAvIHZlYy5NYWduaXR1ZGUpCmVuZAoKZ2FtZTpHZXRTZXJ2aWNlKCJSdW5TZXJ2aWNlIikuSGVhcnRiZWF0OkNvbm5lY3QoZnVuY3Rpb24oc3RlcCkKCWlmIGZseWluZyBhbmQgYyBhbmQgYy5QcmltYXJ5UGFydCB0aGVuCgkJbG9jYWwgcCA9IGMuUHJpbWFyeVBhcnQuUG9zaXRpb24KCQlsb2NhbCBjZiA9IGNhbS5DRnJhbWUKCQlsb2NhbCBheCwgYXksIGF6ID0gY2Y6dG9FdWxlckFuZ2xlc1hZWigpCgkJYzpTZXRQcmltYXJ5UGFydENGcmFtZShDRnJhbWUubmV3KHAueCwgcC55LCBwLnopICogQ0ZyYW1lLkFuZ2xlcyhheCwgYXksIGF6KSkKCQlpZiBidXR0b25zLk1vdmluZyB0aGVuCgkJCWxvY2FsIHQgPSBWZWN0b3IzLm5ldygpCgkJCWlmIGJ1dHRvbnMuVyB0aGVuIHQgPSB0ICsgKHNldFZlYyhjZi5sb29rVmVjdG9yKSkgZW5kCgkJCWlmIGJ1dHRvbnMuUyB0aGVuIHQgPSB0IC0gKHNldFZlYyhjZi5sb29rVmVjdG9yKSkgZW5kCgkJCWlmIGJ1dHRvbnMuQSB0aGVuIHQgPSB0IC0gKHNldFZlYyhjZi5yaWdodFZlY3RvcikpIGVuZAoJCQlpZiBidXR0b25zLkQgdGhlbiB0ID0gdCArIChzZXRWZWMoY2YucmlnaHRWZWN0b3IpKSBlbmQKCQkJYzpUcmFuc2xhdGVCeSh0ICogc3RlcCkKCQllbmQKCWVuZAplbmQpCgo=]]
-local decoded_code = base64_decode(code)
-loadstring(decoded_code)()
-self:DoSomething()
-op3()
-jmp25()
+function endFly()
+	if not p.Character or not flying then return end
+	h.PlatformStand = false
+	bv:Destroy()
+	bav:Destroy()
+	flying = false
+end
+
+game:GetService("UserInputService").InputBegan:Connect(function(input, GPE)
+	if GPE then return end
+	for i, e in pairs(buttons) do
+		if i ~= "Moving" and input.KeyCode == Enum.KeyCode[i] then
+			buttons[i] = true
+			buttons.Moving = true
+		end
+	end
+end)
+
+game:GetService("UserInputService").InputEnded:Connect(function(input, GPE)
+	if GPE then return end
+	local a = false
+	for i, e in pairs(buttons) do
+		if i ~= "Moving" then
+			if input.KeyCode == Enum.KeyCode[i] then
+				buttons[i] = false
+			end
+			if buttons[i] then
+				a = true
+			end
+		end
+	end
+	buttons.Moving = a
+end)
+
+local function setVec(vec)
+	return vec * (flySettings.flyspeed / vec.Magnitude)
+end
+
+game:GetService("RunService").Heartbeat:Connect(function(step)
+	if flying and c and c.PrimaryPart then
+		local p = c.PrimaryPart.Position
+		local cf = cam.CFrame
+		local ax, ay, az = cf:toEulerAnglesXYZ()
+		c:SetPrimaryPartCFrame(CFrame.new(p.x, p.y, p.z) * CFrame.Angles(ax, ay, az))
+		if buttons.Moving then
+			local t = Vector3.new()
+			if buttons.W then t = t + (setVec(cf.lookVector)) end
+			if buttons.S then t = t - (setVec(cf.lookVector)) end
+			if buttons.A then t = t - (setVec(cf.rightVector)) end
+			if buttons.D then t = t + (setVec(cf.rightVector)) end
+			c:TranslateBy(t * step)
+		end
+	end
+end)
+
