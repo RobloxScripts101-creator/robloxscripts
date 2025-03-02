@@ -220,15 +220,15 @@ Spread.TextWrapped = true
 
 -- Scripts:
 
-local function FFKOT_fake_script() -- exitBtn.LocalScript 
+local function NJRK_fake_script() -- exitBtn.LocalScript 
 	local script = Instance.new('LocalScript', exitBtn)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent.Parent:Destroy()
 	end)
 end
-coroutine.wrap(FFKOT_fake_script)()
-local function WMMIY_fake_script() -- Aimbot.LocalScript 
+coroutine.wrap(NJRK_fake_script)()
+local function SXXQFTB_fake_script() -- Aimbot.LocalScript 
 	local script = Instance.new('LocalScript', Aimbot)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -368,8 +368,8 @@ local function WMMIY_fake_script() -- Aimbot.LocalScript
 		end)
 	end
 end
-coroutine.wrap(WMMIY_fake_script)()
-local function GZZLTSY_fake_script() -- InfAmmo.LocalScript 
+coroutine.wrap(SXXQFTB_fake_script)()
+local function NMJQ_fake_script() -- InfAmmo.LocalScript 
 	local script = Instance.new('LocalScript', InfAmmo)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -382,16 +382,16 @@ local function GZZLTSY_fake_script() -- InfAmmo.LocalScript
 		end 
 	end)
 end
-coroutine.wrap(GZZLTSY_fake_script)()
-local function GYXX_fake_script() -- ESP.LocalScript 
+coroutine.wrap(NMJQ_fake_script)()
+local function IVLWUTV_fake_script() -- ESP.LocalScript 
 	local script = Instance.new('LocalScript', ESP)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		pcall(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua'))() end)
 	end)
 end
-coroutine.wrap(GYXX_fake_script)()
-local function FZNF_fake_script() -- Extended.LocalScript 
+coroutine.wrap(IVLWUTV_fake_script)()
+local function BHRJMP_fake_script() -- Extended.LocalScript 
 	local script = Instance.new('LocalScript', Extended)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -432,8 +432,8 @@ local function FZNF_fake_script() -- Extended.LocalScript
 		end))
 	end)
 end
-coroutine.wrap(FZNF_fake_script)()
-local function BXEM_fake_script() -- Fly.LocalScript 
+coroutine.wrap(BHRJMP_fake_script)()
+local function XUSVDR_fake_script() -- Fly.LocalScript 
 	local script = Instance.new('LocalScript', Fly)
 
 	-- Flying Script
@@ -530,16 +530,16 @@ local function BXEM_fake_script() -- Fly.LocalScript
 	end)
 	
 end
-coroutine.wrap(BXEM_fake_script)()
-local function BGUEWK_fake_script() -- RGB.LocalScript 
+coroutine.wrap(XUSVDR_fake_script)()
+local function ORFI_fake_script() -- RGB.LocalScript 
 	local script = Instance.new('LocalScript', RGB)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		local c = 1 function zigzag(X)  return math.acos(math.cos(X * math.pi)) / math.pi end game:GetService("RunService").RenderStepped:Connect(function()  if game.Workspace.Camera:FindFirstChild('Arms') then   for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do    if v.ClassName == 'MeshPart' then      v.Color = Color3.fromHSV(zigzag(c),1,1)     c = c + .0001    end   end  end end)
 	end)
 end
-coroutine.wrap(BGUEWK_fake_script)()
-local function WKGD_fake_script() -- mainFrame.Dragify 
+coroutine.wrap(ORFI_fake_script)()
+local function BAKCJWP_fake_script() -- mainFrame.Dragify 
 	local script = Instance.new('LocalScript', mainFrame)
 
 	local UIS = game:GetService("UserInputService")
@@ -580,8 +580,8 @@ local function WKGD_fake_script() -- mainFrame.Dragify
 	dragify(script.Parent)
 	
 end
-coroutine.wrap(WKGD_fake_script)()
-local function LVBE_fake_script() -- Recoil.LocalScript 
+coroutine.wrap(BAKCJWP_fake_script)()
+local function LDAVUHY_fake_script() -- Recoil.LocalScript 
 	local script = Instance.new('LocalScript', Recoil)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -592,8 +592,8 @@ local function LVBE_fake_script() -- Recoil.LocalScript
 		end
 	end)
 end
-coroutine.wrap(LVBE_fake_script)()
-local function DOBGGK_fake_script() -- Spread.LocalScript 
+coroutine.wrap(LDAVUHY_fake_script)()
+local function CDPVHC_fake_script() -- Spread.LocalScript 
 	local script = Instance.new('LocalScript', Spread)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -604,22 +604,22 @@ local function DOBGGK_fake_script() -- Spread.LocalScript
 		end
 	end)
 end
-coroutine.wrap(DOBGGK_fake_script)()
-local function RDNN_fake_script() -- Owlhub.Script 
+coroutine.wrap(CDPVHC_fake_script)()
+local function TAEQVVM_fake_script() -- Owlhub.Script 
 	local script = Instance.new('Script', Owlhub)
 
 	script.Parent.Parent = game:GetService("CoreGui")
 end
-coroutine.wrap(RDNN_fake_script)()
-local function NQRQ_fake_script() -- Owlhub.LocalScript 
+coroutine.wrap(TAEQVVM_fake_script)()
+local function NWTNKTT_fake_script() -- Owlhub.LocalScript 
 	local script = Instance.new('LocalScript', Owlhub)
 
 	local UserInputService = game:GetService("UserInputService")
 	
 	UserInputService.InputBegan:Connect(function(input)
-		if input.KeyCode == Enum.KeyCode.LeftShift then
+		if input.KeyCode == Enum.KeyCode.RightShift then
 			script.Parent.Enabled = not script.Parent.Enabled -- Toggle GUI visibility using F7 key.
 		end
 	end)
 end
-coroutine.wrap(NQRQ_fake_script)()
+coroutine.wrap(NWTNKTT_fake_script)()
