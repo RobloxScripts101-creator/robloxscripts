@@ -19,6 +19,9 @@ local Fly = Instance.new("TextButton")
 local RGB = Instance.new("TextButton")
 local Recoil = Instance.new("TextButton")
 local Spread = Instance.new("TextButton")
+local InfYield = Instance.new("TextButton")
+local Auto = Instance.new("TextButton")
+local Rapid = Instance.new("TextButton")
 local EnterGameFrame = Instance.new("ImageLabel")
 local topBarFrame_2 = Instance.new("ImageLabel")
 local owlHubIcon_2 = Instance.new("ImageLabel")
@@ -119,7 +122,7 @@ Aimbot.Parent = Arsenal
 Aimbot.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Aimbot.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Aimbot.BorderSizePixel = 0
-Aimbot.Position = UDim2.new(0.0361757092, 0, 0.191111118, 0)
+Aimbot.Position = UDim2.new(0.0335917324, 0, 0.239999995, 0)
 Aimbot.Size = UDim2.new(0, 104, 0, 24)
 Aimbot.Font = Enum.Font.SourceSans
 Aimbot.Text = "Aimbot"
@@ -133,7 +136,7 @@ InfAmmo.Parent = Arsenal
 InfAmmo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 InfAmmo.BorderColor3 = Color3.fromRGB(0, 0, 0)
 InfAmmo.BorderSizePixel = 0
-InfAmmo.Position = UDim2.new(0.343669266, 0, 0.191111118, 0)
+InfAmmo.Position = UDim2.new(0.341085285, 0, 0.239999995, 0)
 InfAmmo.Size = UDim2.new(0, 104, 0, 24)
 InfAmmo.Font = Enum.Font.SourceSans
 InfAmmo.Text = "Infinite Ammo"
@@ -147,7 +150,7 @@ ESP.Parent = Arsenal
 ESP.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ESP.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ESP.BorderSizePixel = 0
-ESP.Position = UDim2.new(0.658914745, 0, 0.191111118, 0)
+ESP.Position = UDim2.new(0.658914745, 0, 0.239999995, 0)
 ESP.Size = UDim2.new(0, 104, 0, 24)
 ESP.Font = Enum.Font.SourceSans
 ESP.Text = "ESP"
@@ -226,6 +229,48 @@ Spread.TextScaled = true
 Spread.TextSize = 14.000
 Spread.TextWrapped = true
 
+InfYield.Name = "InfYield"
+InfYield.Parent = Arsenal
+InfYield.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InfYield.BorderColor3 = Color3.fromRGB(0, 0, 0)
+InfYield.BorderSizePixel = 0
+InfYield.Position = UDim2.new(0.658914745, 0, 0.528888881, 0)
+InfYield.Size = UDim2.new(0, 104, 0, 24)
+InfYield.Font = Enum.Font.SourceSans
+InfYield.Text = "Infinite Yield"
+InfYield.TextColor3 = Color3.fromRGB(0, 0, 0)
+InfYield.TextScaled = true
+InfYield.TextSize = 14.000
+InfYield.TextWrapped = true
+
+Auto.Name = "Auto"
+Auto.Parent = Arsenal
+Auto.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Auto.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Auto.BorderSizePixel = 0
+Auto.Position = UDim2.new(0.0335917696, 0, 0.684444427, 0)
+Auto.Size = UDim2.new(0, 104, 0, 24)
+Auto.Font = Enum.Font.SourceSans
+Auto.Text = "Always Auto"
+Auto.TextColor3 = Color3.fromRGB(0, 0, 0)
+Auto.TextScaled = true
+Auto.TextSize = 14.000
+Auto.TextWrapped = true
+
+Rapid.Name = "Rapid"
+Rapid.Parent = Arsenal
+Rapid.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Rapid.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Rapid.BorderSizePixel = 0
+Rapid.Position = UDim2.new(0.341085315, 0, 0.684444427, 0)
+Rapid.Size = UDim2.new(0, 104, 0, 24)
+Rapid.Font = Enum.Font.SourceSans
+Rapid.Text = "Rapid Fire"
+Rapid.TextColor3 = Color3.fromRGB(0, 0, 0)
+Rapid.TextScaled = true
+Rapid.TextSize = 14.000
+Rapid.TextWrapped = true
+
 EnterGameFrame.Name = "EnterGameFrame"
 EnterGameFrame.Parent = Owlhub
 EnterGameFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -235,6 +280,7 @@ EnterGameFrame.BorderSizePixel = 0
 EnterGameFrame.ClipsDescendants = true
 EnterGameFrame.Position = UDim2.new(0.0193988178, 0, 0.039895732, 0)
 EnterGameFrame.Size = UDim2.new(0, 387, 0, 225)
+EnterGameFrame.Visible = false
 EnterGameFrame.Image = "http://www.roblox.com/asset/?id=4530318781"
 EnterGameFrame.ImageColor3 = Color3.fromRGB(40, 40, 40)
 EnterGameFrame.ScaleType = Enum.ScaleType.Slice
@@ -321,19 +367,24 @@ Arsenal_2.TextWrapped = true
 
 -- Scripts:
 
-local function LRJW_fake_script() -- exitBtn.LocalScript 
+local function BCJUIY_fake_script() -- exitBtn.LocalScript 
 	local script = Instance.new('LocalScript', exitBtn)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent.Parent:Destroy()
 	end)
 end
-coroutine.wrap(LRJW_fake_script)()
-local function XOLI_fake_script() -- Aimbot.LocalScript 
+coroutine.wrap(BCJUIY_fake_script)()
+local function YPNWB_fake_script() -- Aimbot.LocalScript 
 	local script = Instance.new('LocalScript', Aimbot)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		enableAimbot()
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Aimbot",
+			Text = "Aimbot Enabled",
+			Duration = 5
+		})
 	end)
 	
 	function enableAimbot()
@@ -469,8 +520,8 @@ local function XOLI_fake_script() -- Aimbot.LocalScript
 		end)
 	end
 end
-coroutine.wrap(XOLI_fake_script)()
-local function MDWFQTO_fake_script() -- InfAmmo.LocalScript 
+coroutine.wrap(YPNWB_fake_script)()
+local function WPLPSKF_fake_script() -- InfAmmo.LocalScript 
 	local script = Instance.new('LocalScript', InfAmmo)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -481,18 +532,28 @@ local function MDWFQTO_fake_script() -- InfAmmo.LocalScript
 			game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount2.Value = 999
 	
 		end 
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Infinite Ammo",
+			Text = "Infinite Ammo Enabled",
+			Duration = 5
+		})
 	end)
 end
-coroutine.wrap(MDWFQTO_fake_script)()
-local function QEIK_fake_script() -- ESP.LocalScript 
+coroutine.wrap(WPLPSKF_fake_script)()
+local function PJCUGV_fake_script() -- ESP.LocalScript 
 	local script = Instance.new('LocalScript', ESP)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		pcall(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua'))() end)
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "ESP",
+			Text = "ESP Enabled",
+			Duration = 5
+		})
 	end)
 end
-coroutine.wrap(QEIK_fake_script)()
-local function BXNSCWZ_fake_script() -- Extended.LocalScript 
+coroutine.wrap(PJCUGV_fake_script)()
+local function VNKEASI_fake_script() -- Extended.LocalScript 
 	local script = Instance.new('LocalScript', Extended)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -531,10 +592,15 @@ local function BXNSCWZ_fake_script() -- Extended.LocalScript
 				end))
 			end
 		end))
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Extended Hitboxes",
+			Text = "Extened Hitboxes Enabled",
+			Duration = 5
+		})
 	end)
 end
-coroutine.wrap(BXNSCWZ_fake_script)()
-local function VFCE_fake_script() -- Fly.LocalScript 
+coroutine.wrap(VNKEASI_fake_script)()
+local function AGVX_fake_script() -- Fly.LocalScript 
 	local script = Instance.new('LocalScript', Fly)
 
 	-- Flying Script
@@ -631,58 +697,21 @@ local function VFCE_fake_script() -- Fly.LocalScript
 	end)
 	
 end
-coroutine.wrap(VFCE_fake_script)()
-local function UNGTAY_fake_script() -- RGB.LocalScript 
+coroutine.wrap(AGVX_fake_script)()
+local function QNSTZ_fake_script() -- RGB.LocalScript 
 	local script = Instance.new('LocalScript', RGB)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		local c = 1 function zigzag(X)  return math.acos(math.cos(X * math.pi)) / math.pi end game:GetService("RunService").RenderStepped:Connect(function()  if game.Workspace.Camera:FindFirstChild('Arms') then   for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do    if v.ClassName == 'MeshPart' then      v.Color = Color3.fromHSV(zigzag(c),1,1)     c = c + .0001    end   end  end end)
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "RGB",
+			Text = "RGB Enabled",
+			Duration = 5
+		})
 	end)
 end
-coroutine.wrap(UNGTAY_fake_script)()
-local function YKBNDEP_fake_script() -- Arsenal.Dragify 
-	local script = Instance.new('LocalScript', Arsenal)
-
-	local UIS = game:GetService("UserInputService")
-	function dragify(Frame)
-		dragToggle = nil
-		dragSpeed = 0.15
-		dragInput = nil
-		dragStart = nil
-		dragPos = nil
-		function updateInput(input)
-			Delta = input.Position - dragStart
-			Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
-			game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.15), {Position = Position}):Play()
-		end
-		Frame.InputBegan:Connect(function(input)
-			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
-				dragToggle = true
-				dragStart = input.Position
-				startPos = Frame.Position
-				input.Changed:Connect(function()
-					if input.UserInputState == Enum.UserInputState.End then
-						dragToggle = false
-					end
-				end)
-			end
-		end)
-		Frame.InputChanged:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-				dragInput = input
-			end
-		end)
-		game:GetService("UserInputService").InputChanged:Connect(function(input)
-			if input == dragInput and dragToggle then
-				updateInput(input)
-			end
-		end)
-	end
-	dragify(script.Parent)
-	
-end
-coroutine.wrap(YKBNDEP_fake_script)()
-local function CWXXK_fake_script() -- Recoil.LocalScript 
+coroutine.wrap(QNSTZ_fake_script)()
+local function MPECS_fake_script() -- Recoil.LocalScript 
 	local script = Instance.new('LocalScript', Recoil)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -691,10 +720,15 @@ local function CWXXK_fake_script() -- Recoil.LocalScript
 				v.Value = 0
 			end
 		end
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "No Recoil",
+			Text = "No Recoil Enabled",
+			Duration = 5
+		})
 	end)
 end
-coroutine.wrap(CWXXK_fake_script)()
-local function CODOOE_fake_script() -- Spread.LocalScript 
+coroutine.wrap(MPECS_fake_script)()
+local function TNWQ_fake_script() -- Spread.LocalScript 
 	local script = Instance.new('LocalScript', Spread)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -703,16 +737,71 @@ local function CODOOE_fake_script() -- Spread.LocalScript
 				v.Value = 0
 			end
 		end
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "No Spread",
+			Text = "No Spread Enabled",
+			Duration = 5
+		})
 	end)
 end
-coroutine.wrap(CODOOE_fake_script)()
-local function QEXFNV_fake_script() -- Owlhub.Script 
+coroutine.wrap(TNWQ_fake_script)()
+local function MUBRCG_fake_script() -- InfYield.LocalScript 
+	local script = Instance.new('LocalScript', InfYield)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+	end)
+end
+coroutine.wrap(MUBRCG_fake_script)()
+local function PXPH_fake_script() -- Auto.LocalScript 
+	local script = Instance.new('LocalScript', Auto)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		for _, v in pairs(game.ReplicatedStorage.Weapons:GetDescendants()) do
+			if v.Name == "Auto" or v.Name == "AutoFire" or v.Name == "Automatic" or v.Name == "AutoShoot" or v.Name == "AutoGun" then
+				v.Value = true
+			end
+		end
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Automatic",
+			Text = "Always Automatic Enabled",
+			Duration = 5
+		})
+	end)
+end
+coroutine.wrap(PXPH_fake_script)()
+local function EDWAK_fake_script() -- Rapid.LocalScript 
+	local script = Instance.new('LocalScript', Rapid)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		local Weapons = game:GetService("ReplicatedStorage"):FindFirstChild("Weapons")
+		if Weapons then
+			for _, weapon in pairs(Weapons:GetDescendants()) do
+				if weapon:IsA("NumberValue") then
+					if weapon.Name == "FireRate" then
+						weapon.Value = 0.05
+					end
+					if weapon.Name == "ReloadTime" then
+						weapon.Value = 0
+					end
+				end
+			end
+		end
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Rapid Fire",
+			Text = "Rapid Fire Activated",
+			Duration = 5
+		})
+	end)
+end
+coroutine.wrap(EDWAK_fake_script)()
+local function MRSGWBF_fake_script() -- Owlhub.Script 
 	local script = Instance.new('Script', Owlhub)
 
 	script.Parent.Parent = game:GetService("CoreGui")
 end
-coroutine.wrap(QEXFNV_fake_script)()
-local function DXQKHWN_fake_script() -- Owlhub.LocalScript 
+coroutine.wrap(MRSGWBF_fake_script)()
+local function LCTUYRW_fake_script() -- Owlhub.LocalScript 
 	local script = Instance.new('LocalScript', Owlhub)
 
 	local UserInputService = game:GetService("UserInputService")
@@ -723,58 +812,16 @@ local function DXQKHWN_fake_script() -- Owlhub.LocalScript
 		end
 	end)
 end
-coroutine.wrap(DXQKHWN_fake_script)()
-local function OIBBW_fake_script() -- exitBtn_2.LocalScript 
+coroutine.wrap(LCTUYRW_fake_script)()
+local function OULR_fake_script() -- exitBtn_2.LocalScript 
 	local script = Instance.new('LocalScript', exitBtn_2)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent.Parent:Destroy()
 	end)
 end
-coroutine.wrap(OIBBW_fake_script)()
-local function SHZHFT_fake_script() -- EnterGameFrame.Dragify 
-	local script = Instance.new('LocalScript', EnterGameFrame)
-
-	local UIS = game:GetService("UserInputService")
-	function dragify(Frame)
-		dragToggle = nil
-		dragSpeed = 0.15
-		dragInput = nil
-		dragStart = nil
-		dragPos = nil
-		function updateInput(input)
-			Delta = input.Position - dragStart
-			Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
-			game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.15), {Position = Position}):Play()
-		end
-		Frame.InputBegan:Connect(function(input)
-			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
-				dragToggle = true
-				dragStart = input.Position
-				startPos = Frame.Position
-				input.Changed:Connect(function()
-					if input.UserInputState == Enum.UserInputState.End then
-						dragToggle = false
-					end
-				end)
-			end
-		end)
-		Frame.InputChanged:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-				dragInput = input
-			end
-		end)
-		game:GetService("UserInputService").InputChanged:Connect(function(input)
-			if input == dragInput and dragToggle then
-				updateInput(input)
-			end
-		end)
-	end
-	dragify(script.Parent)
-	
-end
-coroutine.wrap(SHZHFT_fake_script)()
-local function EMDZUE_fake_script() -- Arsenal_2.LocalScript 
+coroutine.wrap(OULR_fake_script)()
+local function EKAEN_fake_script() -- Arsenal_2.LocalScript 
 	local script = Instance.new('LocalScript', Arsenal_2)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -782,11 +829,11 @@ local function EMDZUE_fake_script() -- Arsenal_2.LocalScript
 		script.Parent.Parent.Parent.Arsenal.Visible = true
 	end)
 end
-coroutine.wrap(EMDZUE_fake_script)()
-local function QEJEYM_fake_script() -- Owlhub.ScriptFrame 
+coroutine.wrap(EKAEN_fake_script)()
+local function WMLLICT_fake_script() -- Owlhub.ScriptFrame 
 	local script = Instance.new('LocalScript', Owlhub)
 
 	script.Parent.Arsenal.Visible = false
 	script.Parent.EnterGameFrame.Visible = true
 end
-coroutine.wrap(QEJEYM_fake_script)()
+coroutine.wrap(WMLLICT_fake_script)()
