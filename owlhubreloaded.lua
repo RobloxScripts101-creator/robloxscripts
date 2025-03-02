@@ -22,6 +22,7 @@ local Spread = Instance.new("TextButton")
 local InfYield = Instance.new("TextButton")
 local Auto = Instance.new("TextButton")
 local Rapid = Instance.new("TextButton")
+local Youtuber = Instance.new("TextButton")
 local EnterGameFrame = Instance.new("ImageLabel")
 local topBarFrame_2 = Instance.new("ImageLabel")
 local owlHubIcon_2 = Instance.new("ImageLabel")
@@ -271,6 +272,20 @@ Rapid.TextScaled = true
 Rapid.TextSize = 14.000
 Rapid.TextWrapped = true
 
+Youtuber.Name = "Youtuber"
+Youtuber.Parent = Arsenal
+Youtuber.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Youtuber.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Youtuber.BorderSizePixel = 0
+Youtuber.Position = UDim2.new(0.658914745, 0, 0.684444427, 0)
+Youtuber.Size = UDim2.new(0, 104, 0, 24)
+Youtuber.Font = Enum.Font.SourceSans
+Youtuber.Text = "Orange Team"
+Youtuber.TextColor3 = Color3.fromRGB(0, 0, 0)
+Youtuber.TextScaled = true
+Youtuber.TextSize = 14.000
+Youtuber.TextWrapped = true
+
 EnterGameFrame.Name = "EnterGameFrame"
 EnterGameFrame.Parent = Owlhub
 EnterGameFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -367,15 +382,15 @@ Arsenal_2.TextWrapped = true
 
 -- Scripts:
 
-local function BCJUIY_fake_script() -- exitBtn.LocalScript 
+local function NOXDDPJ_fake_script() -- exitBtn.LocalScript 
 	local script = Instance.new('LocalScript', exitBtn)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent.Parent:Destroy()
 	end)
 end
-coroutine.wrap(BCJUIY_fake_script)()
-local function YPNWB_fake_script() -- Aimbot.LocalScript 
+coroutine.wrap(NOXDDPJ_fake_script)()
+local function ZEZEG_fake_script() -- Aimbot.LocalScript 
 	local script = Instance.new('LocalScript', Aimbot)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -520,11 +535,17 @@ local function YPNWB_fake_script() -- Aimbot.LocalScript
 		end)
 	end
 end
-coroutine.wrap(YPNWB_fake_script)()
-local function WPLPSKF_fake_script() -- InfAmmo.LocalScript 
+coroutine.wrap(ZEZEG_fake_script)()
+local function JXVE_fake_script() -- InfAmmo.LocalScript 
 	local script = Instance.new('LocalScript', InfAmmo)
 
 	script.Parent.MouseButton1Click:Connect(function()
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Infinite Ammo",
+			Text = "Infinite Ammo Enabled",
+			Duration = 5
+		})
+		
 		while wait() do
 	
 			game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount.Value = 999
@@ -532,15 +553,10 @@ local function WPLPSKF_fake_script() -- InfAmmo.LocalScript
 			game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount2.Value = 999
 	
 		end 
-		game:GetService("StarterGui"):SetCore("SendNotification", {
-			Title = "Infinite Ammo",
-			Text = "Infinite Ammo Enabled",
-			Duration = 5
-		})
 	end)
 end
-coroutine.wrap(WPLPSKF_fake_script)()
-local function PJCUGV_fake_script() -- ESP.LocalScript 
+coroutine.wrap(JXVE_fake_script)()
+local function YDHVIEN_fake_script() -- ESP.LocalScript 
 	local script = Instance.new('LocalScript', ESP)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -552,8 +568,8 @@ local function PJCUGV_fake_script() -- ESP.LocalScript
 		})
 	end)
 end
-coroutine.wrap(PJCUGV_fake_script)()
-local function VNKEASI_fake_script() -- Extended.LocalScript 
+coroutine.wrap(YDHVIEN_fake_script)()
+local function TZQFZJZ_fake_script() -- Extended.LocalScript 
 	local script = Instance.new('LocalScript', Extended)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -599,8 +615,8 @@ local function VNKEASI_fake_script() -- Extended.LocalScript
 		})
 	end)
 end
-coroutine.wrap(VNKEASI_fake_script)()
-local function AGVX_fake_script() -- Fly.LocalScript 
+coroutine.wrap(TZQFZJZ_fake_script)()
+local function JQKTQBO_fake_script() -- Fly.LocalScript 
 	local script = Instance.new('LocalScript', Fly)
 
 	-- Flying Script
@@ -697,8 +713,8 @@ local function AGVX_fake_script() -- Fly.LocalScript
 	end)
 	
 end
-coroutine.wrap(AGVX_fake_script)()
-local function QNSTZ_fake_script() -- RGB.LocalScript 
+coroutine.wrap(JQKTQBO_fake_script)()
+local function DVTU_fake_script() -- RGB.LocalScript 
 	local script = Instance.new('LocalScript', RGB)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -710,8 +726,8 @@ local function QNSTZ_fake_script() -- RGB.LocalScript
 		})
 	end)
 end
-coroutine.wrap(QNSTZ_fake_script)()
-local function MPECS_fake_script() -- Recoil.LocalScript 
+coroutine.wrap(DVTU_fake_script)()
+local function OTZMDA_fake_script() -- Recoil.LocalScript 
 	local script = Instance.new('LocalScript', Recoil)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -727,8 +743,8 @@ local function MPECS_fake_script() -- Recoil.LocalScript
 		})
 	end)
 end
-coroutine.wrap(MPECS_fake_script)()
-local function TNWQ_fake_script() -- Spread.LocalScript 
+coroutine.wrap(OTZMDA_fake_script)()
+local function ODPBYEE_fake_script() -- Spread.LocalScript 
 	local script = Instance.new('LocalScript', Spread)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -744,16 +760,16 @@ local function TNWQ_fake_script() -- Spread.LocalScript
 		})
 	end)
 end
-coroutine.wrap(TNWQ_fake_script)()
-local function MUBRCG_fake_script() -- InfYield.LocalScript 
+coroutine.wrap(ODPBYEE_fake_script)()
+local function FMMVKH_fake_script() -- InfYield.LocalScript 
 	local script = Instance.new('LocalScript', InfYield)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 	end)
 end
-coroutine.wrap(MUBRCG_fake_script)()
-local function PXPH_fake_script() -- Auto.LocalScript 
+coroutine.wrap(FMMVKH_fake_script)()
+local function GLIVX_fake_script() -- Auto.LocalScript 
 	local script = Instance.new('LocalScript', Auto)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -769,8 +785,8 @@ local function PXPH_fake_script() -- Auto.LocalScript
 		})
 	end)
 end
-coroutine.wrap(PXPH_fake_script)()
-local function EDWAK_fake_script() -- Rapid.LocalScript 
+coroutine.wrap(GLIVX_fake_script)()
+local function XXNZ_fake_script() -- Rapid.LocalScript 
 	local script = Instance.new('LocalScript', Rapid)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -794,14 +810,45 @@ local function EDWAK_fake_script() -- Rapid.LocalScript
 		})
 	end)
 end
-coroutine.wrap(EDWAK_fake_script)()
-local function MRSGWBF_fake_script() -- Owlhub.Script 
+coroutine.wrap(XXNZ_fake_script)()
+local function IHLFW_fake_script() -- Youtuber.LocalScript 
+	local script = Instance.new('LocalScript', Youtuber)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		local IsAdmin = Instance.new('IntValue', game.Players.LocalPlayer)
+		IsAdmin.Name = "IsYoutber"
+		local PurpleTeam                            = game.Players.LocalPlayer.PlayerGui.GUI.TeamSelection.Buttons["Or"]:Clone()
+		local plrname = game.Players.LocalPlayer.Name
+		PurpleTeam.Visible                          = true
+	
+		PurpleTeam.Parent = game.Players.LocalPlayer.PlayerGui.GUI.TeamSelection.Buttons
+		PurpleTeam.MouseButton1Click:connect(function()
+			game.ReplicatedStorage.Events.KillMe:FireServer()
+			game.Players.LocalPlayer.Status.Team.Value = "TOC"
+			game.Players.LocalPlayer.PlayerGui.GUI.TeamSelection.Visible = false
+			game.Players.LocalPlayer.PlayerGui.GUI.BottomFrame.Visible = false
+			game:GetService("Workspace")[plrname].RightUpperArm.BrickColor = BrickColor.new("Bright orange")
+			game:GetService("Workspace")[plrname].LeftUpperArm.BrickColor = BrickColor.new("Bright orange")
+			game:GetService("Workspace")[plrname].UpperTorso.BrickColor = BrickColor.new("Bright orange")
+			game:GetService("Workspace")[plrname].RightUpperLeg.BrickColor = BrickColor.new("Bright orange")
+			game:GetService("Workspace")[plrname].Cap.Handle.BrickColor = BrickColor.new("Bright orange")
+			game:GetService("Workspace")[plrname].LeftUpperLeg.BrickColor = BrickColor.new("Bright orange")
+		end)
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Yes",
+			Text = "Orange Team Activated",
+			Duration = 5
+		})
+	end)
+end
+coroutine.wrap(IHLFW_fake_script)()
+local function EUDEUS_fake_script() -- Owlhub.Script 
 	local script = Instance.new('Script', Owlhub)
 
 	script.Parent.Parent = game:GetService("CoreGui")
 end
-coroutine.wrap(MRSGWBF_fake_script)()
-local function LCTUYRW_fake_script() -- Owlhub.LocalScript 
+coroutine.wrap(EUDEUS_fake_script)()
+local function CKPIXP_fake_script() -- Owlhub.LocalScript 
 	local script = Instance.new('LocalScript', Owlhub)
 
 	local UserInputService = game:GetService("UserInputService")
@@ -812,16 +859,16 @@ local function LCTUYRW_fake_script() -- Owlhub.LocalScript
 		end
 	end)
 end
-coroutine.wrap(LCTUYRW_fake_script)()
-local function OULR_fake_script() -- exitBtn_2.LocalScript 
+coroutine.wrap(CKPIXP_fake_script)()
+local function MKHZEN_fake_script() -- exitBtn_2.LocalScript 
 	local script = Instance.new('LocalScript', exitBtn_2)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent.Parent:Destroy()
 	end)
 end
-coroutine.wrap(OULR_fake_script)()
-local function EKAEN_fake_script() -- Arsenal_2.LocalScript 
+coroutine.wrap(MKHZEN_fake_script)()
+local function KYXICCI_fake_script() -- Arsenal_2.LocalScript 
 	local script = Instance.new('LocalScript', Arsenal_2)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -829,11 +876,11 @@ local function EKAEN_fake_script() -- Arsenal_2.LocalScript
 		script.Parent.Parent.Parent.Arsenal.Visible = true
 	end)
 end
-coroutine.wrap(EKAEN_fake_script)()
-local function WMLLICT_fake_script() -- Owlhub.ScriptFrame 
+coroutine.wrap(KYXICCI_fake_script)()
+local function NDCDKBL_fake_script() -- Owlhub.ScriptFrame 
 	local script = Instance.new('LocalScript', Owlhub)
 
 	script.Parent.Arsenal.Visible = false
 	script.Parent.EnterGameFrame.Visible = true
 end
-coroutine.wrap(WMLLICT_fake_script)()
+coroutine.wrap(NDCDKBL_fake_script)()
