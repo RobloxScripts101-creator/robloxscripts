@@ -4,7 +4,7 @@
 -- Instances:
 
 local Owlhub = Instance.new("ScreenGui")
-local mainFrame = Instance.new("ImageLabel")
+local Arsenal = Instance.new("ImageLabel")
 local topBarFrame = Instance.new("ImageLabel")
 local owlHubIcon = Instance.new("ImageLabel")
 local exitBtn = Instance.new("ImageButton")
@@ -19,6 +19,14 @@ local Fly = Instance.new("TextButton")
 local RGB = Instance.new("TextButton")
 local Recoil = Instance.new("TextButton")
 local Spread = Instance.new("TextButton")
+local EnterGameFrame = Instance.new("ImageLabel")
+local topBarFrame_2 = Instance.new("ImageLabel")
+local owlHubIcon_2 = Instance.new("ImageLabel")
+local exitBtn_2 = Instance.new("ImageButton")
+local owlHubText_2 = Instance.new("ImageLabel")
+local tabsFrame_2 = Instance.new("Frame")
+local UIListLayout_2 = Instance.new("UIListLayout")
+local Arsenal_2 = Instance.new("TextButton")
 
 --Properties:
 
@@ -27,22 +35,22 @@ Owlhub.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Owlhub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Owlhub.ResetOnSpawn = false
 
-mainFrame.Name = "mainFrame"
-mainFrame.Parent = Owlhub
-mainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-mainFrame.BackgroundTransparency = 1.000
-mainFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
-mainFrame.BorderSizePixel = 0
-mainFrame.ClipsDescendants = true
-mainFrame.Position = UDim2.new(0.0193988178, 0, 0.039895732, 0)
-mainFrame.Size = UDim2.new(0, 387, 0, 225)
-mainFrame.Image = "http://www.roblox.com/asset/?id=4530318781"
-mainFrame.ImageColor3 = Color3.fromRGB(40, 40, 40)
-mainFrame.ScaleType = Enum.ScaleType.Slice
-mainFrame.SliceCenter = Rect.new(20, 20, 480, 480)
+Arsenal.Name = "Arsenal"
+Arsenal.Parent = Owlhub
+Arsenal.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Arsenal.BackgroundTransparency = 1.000
+Arsenal.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Arsenal.BorderSizePixel = 0
+Arsenal.ClipsDescendants = true
+Arsenal.Position = UDim2.new(0.0193988178, 0, 0.039895732, 0)
+Arsenal.Size = UDim2.new(0, 387, 0, 225)
+Arsenal.Image = "http://www.roblox.com/asset/?id=4530318781"
+Arsenal.ImageColor3 = Color3.fromRGB(40, 40, 40)
+Arsenal.ScaleType = Enum.ScaleType.Slice
+Arsenal.SliceCenter = Rect.new(20, 20, 480, 480)
 
 topBarFrame.Name = "topBarFrame"
-topBarFrame.Parent = mainFrame
+topBarFrame.Parent = Arsenal
 topBarFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 topBarFrame.BackgroundTransparency = 1.000
 topBarFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
@@ -92,7 +100,7 @@ owlHubText.Image = "http://www.roblox.com/asset/?id=4389645350"
 owlHubText.ScaleType = Enum.ScaleType.Crop
 
 tabsFrame.Name = "tabsFrame"
-tabsFrame.Parent = mainFrame
+tabsFrame.Parent = Arsenal
 tabsFrame.AnchorPoint = Vector2.new(0.5, 1)
 tabsFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 tabsFrame.BackgroundTransparency = 1.000
@@ -107,7 +115,7 @@ UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 UIListLayout.Padding = UDim.new(0, 2)
 
 Aimbot.Name = "Aimbot"
-Aimbot.Parent = mainFrame
+Aimbot.Parent = Arsenal
 Aimbot.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Aimbot.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Aimbot.BorderSizePixel = 0
@@ -121,7 +129,7 @@ Aimbot.TextSize = 14.000
 Aimbot.TextWrapped = true
 
 InfAmmo.Name = "InfAmmo"
-InfAmmo.Parent = mainFrame
+InfAmmo.Parent = Arsenal
 InfAmmo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 InfAmmo.BorderColor3 = Color3.fromRGB(0, 0, 0)
 InfAmmo.BorderSizePixel = 0
@@ -135,7 +143,7 @@ InfAmmo.TextSize = 14.000
 InfAmmo.TextWrapped = true
 
 ESP.Name = "ESP"
-ESP.Parent = mainFrame
+ESP.Parent = Arsenal
 ESP.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ESP.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ESP.BorderSizePixel = 0
@@ -149,7 +157,7 @@ ESP.TextSize = 14.000
 ESP.TextWrapped = true
 
 Extended.Name = "Extended"
-Extended.Parent = mainFrame
+Extended.Parent = Arsenal
 Extended.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Extended.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Extended.BorderSizePixel = 0
@@ -163,7 +171,7 @@ Extended.TextSize = 14.000
 Extended.TextWrapped = true
 
 Fly.Name = "Fly"
-Fly.Parent = mainFrame
+Fly.Parent = Arsenal
 Fly.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 Fly.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Fly.BorderSizePixel = 0
@@ -177,7 +185,7 @@ Fly.TextSize = 14.000
 Fly.TextWrapped = true
 
 RGB.Name = "RGB"
-RGB.Parent = mainFrame
+RGB.Parent = Arsenal
 RGB.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 RGB.BorderColor3 = Color3.fromRGB(0, 0, 0)
 RGB.BorderSizePixel = 0
@@ -191,7 +199,7 @@ RGB.TextSize = 14.000
 RGB.TextWrapped = true
 
 Recoil.Name = "Recoil"
-Recoil.Parent = mainFrame
+Recoil.Parent = Arsenal
 Recoil.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Recoil.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Recoil.BorderSizePixel = 0
@@ -205,7 +213,7 @@ Recoil.TextSize = 14.000
 Recoil.TextWrapped = true
 
 Spread.Name = "Spread"
-Spread.Parent = mainFrame
+Spread.Parent = Arsenal
 Spread.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Spread.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Spread.BorderSizePixel = 0
@@ -218,17 +226,110 @@ Spread.TextScaled = true
 Spread.TextSize = 14.000
 Spread.TextWrapped = true
 
+EnterGameFrame.Name = "EnterGameFrame"
+EnterGameFrame.Parent = Owlhub
+EnterGameFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+EnterGameFrame.BackgroundTransparency = 1.000
+EnterGameFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+EnterGameFrame.BorderSizePixel = 0
+EnterGameFrame.ClipsDescendants = true
+EnterGameFrame.Position = UDim2.new(0.0193988178, 0, 0.039895732, 0)
+EnterGameFrame.Size = UDim2.new(0, 387, 0, 225)
+EnterGameFrame.Image = "http://www.roblox.com/asset/?id=4530318781"
+EnterGameFrame.ImageColor3 = Color3.fromRGB(40, 40, 40)
+EnterGameFrame.ScaleType = Enum.ScaleType.Slice
+EnterGameFrame.SliceCenter = Rect.new(20, 20, 480, 480)
+
+topBarFrame_2.Name = "topBarFrame"
+topBarFrame_2.Parent = EnterGameFrame
+topBarFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+topBarFrame_2.BackgroundTransparency = 1.000
+topBarFrame_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+topBarFrame_2.BorderSizePixel = 0
+topBarFrame_2.ClipsDescendants = true
+topBarFrame_2.Size = UDim2.new(1, 0, 0, 27)
+topBarFrame_2.Image = "http://www.roblox.com/asset/?id=4530319192"
+topBarFrame_2.ImageColor3 = Color3.fromRGB(30, 30, 30)
+topBarFrame_2.ScaleType = Enum.ScaleType.Slice
+topBarFrame_2.SliceCenter = Rect.new(20, 20, 480, 480)
+
+owlHubIcon_2.Name = "owlHubIcon"
+owlHubIcon_2.Parent = topBarFrame_2
+owlHubIcon_2.AnchorPoint = Vector2.new(0, 0.5)
+owlHubIcon_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+owlHubIcon_2.BackgroundTransparency = 1.000
+owlHubIcon_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+owlHubIcon_2.BorderSizePixel = 0
+owlHubIcon_2.Position = UDim2.new(0, 0, 0.5, 0)
+owlHubIcon_2.Size = UDim2.new(0, 40, 0, 20)
+owlHubIcon_2.Image = "http://www.roblox.com/asset/?id=4387074074"
+owlHubIcon_2.ScaleType = Enum.ScaleType.Fit
+
+exitBtn_2.Name = "exitBtn"
+exitBtn_2.Parent = topBarFrame_2
+exitBtn_2.AnchorPoint = Vector2.new(1, 0.5)
+exitBtn_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+exitBtn_2.BackgroundTransparency = 1.000
+exitBtn_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+exitBtn_2.BorderSizePixel = 0
+exitBtn_2.Position = UDim2.new(0, 381, 0.5, 0)
+exitBtn_2.Size = UDim2.new(0, 15, 0, 15)
+exitBtn_2.Image = "http://www.roblox.com/asset/?id=4389749368"
+exitBtn_2.ImageTransparency = 0.200
+exitBtn_2.ScaleType = Enum.ScaleType.Fit
+
+owlHubText_2.Name = "owlHubText"
+owlHubText_2.Parent = topBarFrame_2
+owlHubText_2.AnchorPoint = Vector2.new(0, 0.5)
+owlHubText_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+owlHubText_2.BackgroundTransparency = 1.000
+owlHubText_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+owlHubText_2.BorderSizePixel = 0
+owlHubText_2.Position = UDim2.new(0, 40, 0.5, 0)
+owlHubText_2.Size = UDim2.new(0, 70, 0, 20)
+owlHubText_2.Image = "http://www.roblox.com/asset/?id=4389645350"
+owlHubText_2.ScaleType = Enum.ScaleType.Crop
+
+tabsFrame_2.Name = "tabsFrame"
+tabsFrame_2.Parent = EnterGameFrame
+tabsFrame_2.AnchorPoint = Vector2.new(0.5, 1)
+tabsFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+tabsFrame_2.BackgroundTransparency = 1.000
+tabsFrame_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+tabsFrame_2.BorderSizePixel = 0
+tabsFrame_2.Position = UDim2.new(0.5, 0, 0, 56)
+tabsFrame_2.Size = UDim2.new(0, 365, 0, 21)
+
+UIListLayout_2.Parent = tabsFrame_2
+UIListLayout_2.FillDirection = Enum.FillDirection.Horizontal
+UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout_2.Padding = UDim.new(0, 2)
+
+Arsenal_2.Name = "Arsenal"
+Arsenal_2.Parent = EnterGameFrame
+Arsenal_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Arsenal_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Arsenal_2.BorderSizePixel = 0
+Arsenal_2.Position = UDim2.new(0.0361757092, 0, 0.191111118, 0)
+Arsenal_2.Size = UDim2.new(0, 104, 0, 24)
+Arsenal_2.Font = Enum.Font.SourceSans
+Arsenal_2.Text = "Arsenal"
+Arsenal_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+Arsenal_2.TextScaled = true
+Arsenal_2.TextSize = 14.000
+Arsenal_2.TextWrapped = true
+
 -- Scripts:
 
-local function NJRK_fake_script() -- exitBtn.LocalScript 
+local function LRJW_fake_script() -- exitBtn.LocalScript 
 	local script = Instance.new('LocalScript', exitBtn)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent.Parent:Destroy()
 	end)
 end
-coroutine.wrap(NJRK_fake_script)()
-local function SXXQFTB_fake_script() -- Aimbot.LocalScript 
+coroutine.wrap(LRJW_fake_script)()
+local function XOLI_fake_script() -- Aimbot.LocalScript 
 	local script = Instance.new('LocalScript', Aimbot)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -368,8 +469,8 @@ local function SXXQFTB_fake_script() -- Aimbot.LocalScript
 		end)
 	end
 end
-coroutine.wrap(SXXQFTB_fake_script)()
-local function NMJQ_fake_script() -- InfAmmo.LocalScript 
+coroutine.wrap(XOLI_fake_script)()
+local function MDWFQTO_fake_script() -- InfAmmo.LocalScript 
 	local script = Instance.new('LocalScript', InfAmmo)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -382,16 +483,16 @@ local function NMJQ_fake_script() -- InfAmmo.LocalScript
 		end 
 	end)
 end
-coroutine.wrap(NMJQ_fake_script)()
-local function IVLWUTV_fake_script() -- ESP.LocalScript 
+coroutine.wrap(MDWFQTO_fake_script)()
+local function QEIK_fake_script() -- ESP.LocalScript 
 	local script = Instance.new('LocalScript', ESP)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		pcall(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua'))() end)
 	end)
 end
-coroutine.wrap(IVLWUTV_fake_script)()
-local function BHRJMP_fake_script() -- Extended.LocalScript 
+coroutine.wrap(QEIK_fake_script)()
+local function BXNSCWZ_fake_script() -- Extended.LocalScript 
 	local script = Instance.new('LocalScript', Extended)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -432,8 +533,8 @@ local function BHRJMP_fake_script() -- Extended.LocalScript
 		end))
 	end)
 end
-coroutine.wrap(BHRJMP_fake_script)()
-local function XUSVDR_fake_script() -- Fly.LocalScript 
+coroutine.wrap(BXNSCWZ_fake_script)()
+local function VFCE_fake_script() -- Fly.LocalScript 
 	local script = Instance.new('LocalScript', Fly)
 
 	-- Flying Script
@@ -530,17 +631,17 @@ local function XUSVDR_fake_script() -- Fly.LocalScript
 	end)
 	
 end
-coroutine.wrap(XUSVDR_fake_script)()
-local function ORFI_fake_script() -- RGB.LocalScript 
+coroutine.wrap(VFCE_fake_script)()
+local function UNGTAY_fake_script() -- RGB.LocalScript 
 	local script = Instance.new('LocalScript', RGB)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		local c = 1 function zigzag(X)  return math.acos(math.cos(X * math.pi)) / math.pi end game:GetService("RunService").RenderStepped:Connect(function()  if game.Workspace.Camera:FindFirstChild('Arms') then   for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do    if v.ClassName == 'MeshPart' then      v.Color = Color3.fromHSV(zigzag(c),1,1)     c = c + .0001    end   end  end end)
 	end)
 end
-coroutine.wrap(ORFI_fake_script)()
-local function BAKCJWP_fake_script() -- mainFrame.Dragify 
-	local script = Instance.new('LocalScript', mainFrame)
+coroutine.wrap(UNGTAY_fake_script)()
+local function YKBNDEP_fake_script() -- Arsenal.Dragify 
+	local script = Instance.new('LocalScript', Arsenal)
 
 	local UIS = game:GetService("UserInputService")
 	function dragify(Frame)
@@ -580,8 +681,8 @@ local function BAKCJWP_fake_script() -- mainFrame.Dragify
 	dragify(script.Parent)
 	
 end
-coroutine.wrap(BAKCJWP_fake_script)()
-local function LDAVUHY_fake_script() -- Recoil.LocalScript 
+coroutine.wrap(YKBNDEP_fake_script)()
+local function CWXXK_fake_script() -- Recoil.LocalScript 
 	local script = Instance.new('LocalScript', Recoil)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -592,8 +693,8 @@ local function LDAVUHY_fake_script() -- Recoil.LocalScript
 		end
 	end)
 end
-coroutine.wrap(LDAVUHY_fake_script)()
-local function CDPVHC_fake_script() -- Spread.LocalScript 
+coroutine.wrap(CWXXK_fake_script)()
+local function CODOOE_fake_script() -- Spread.LocalScript 
 	local script = Instance.new('LocalScript', Spread)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -604,14 +705,14 @@ local function CDPVHC_fake_script() -- Spread.LocalScript
 		end
 	end)
 end
-coroutine.wrap(CDPVHC_fake_script)()
-local function TAEQVVM_fake_script() -- Owlhub.Script 
+coroutine.wrap(CODOOE_fake_script)()
+local function QEXFNV_fake_script() -- Owlhub.Script 
 	local script = Instance.new('Script', Owlhub)
 
 	script.Parent.Parent = game:GetService("CoreGui")
 end
-coroutine.wrap(TAEQVVM_fake_script)()
-local function NWTNKTT_fake_script() -- Owlhub.LocalScript 
+coroutine.wrap(QEXFNV_fake_script)()
+local function DXQKHWN_fake_script() -- Owlhub.LocalScript 
 	local script = Instance.new('LocalScript', Owlhub)
 
 	local UserInputService = game:GetService("UserInputService")
@@ -622,4 +723,70 @@ local function NWTNKTT_fake_script() -- Owlhub.LocalScript
 		end
 	end)
 end
-coroutine.wrap(NWTNKTT_fake_script)()
+coroutine.wrap(DXQKHWN_fake_script)()
+local function OIBBW_fake_script() -- exitBtn_2.LocalScript 
+	local script = Instance.new('LocalScript', exitBtn_2)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		script.Parent.Parent.Parent.Parent:Destroy()
+	end)
+end
+coroutine.wrap(OIBBW_fake_script)()
+local function SHZHFT_fake_script() -- EnterGameFrame.Dragify 
+	local script = Instance.new('LocalScript', EnterGameFrame)
+
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+		dragToggle = nil
+		dragSpeed = 0.15
+		dragInput = nil
+		dragStart = nil
+		dragPos = nil
+		function updateInput(input)
+			Delta = input.Position - dragStart
+			Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+			game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.15), {Position = Position}):Play()
+		end
+		Frame.InputBegan:Connect(function(input)
+			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+				dragToggle = true
+				dragStart = input.Position
+				startPos = Frame.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragToggle = false
+					end
+				end)
+			end
+		end)
+		Frame.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		game:GetService("UserInputService").InputChanged:Connect(function(input)
+			if input == dragInput and dragToggle then
+				updateInput(input)
+			end
+		end)
+	end
+	dragify(script.Parent)
+	
+end
+coroutine.wrap(SHZHFT_fake_script)()
+local function EMDZUE_fake_script() -- Arsenal_2.LocalScript 
+	local script = Instance.new('LocalScript', Arsenal_2)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		script.Parent.Parent.Visible = false
+		script.Parent.Parent.Parent.Arsenal.Visible = true
+	end)
+end
+coroutine.wrap(EMDZUE_fake_script)()
+local function QEJEYM_fake_script() -- Owlhub.ScriptFrame 
+	local script = Instance.new('LocalScript', Owlhub)
+
+	script.Parent.Arsenal.Visible = false
+	script.Parent.EnterGameFrame.Visible = true
+end
+coroutine.wrap(QEJEYM_fake_script)()
